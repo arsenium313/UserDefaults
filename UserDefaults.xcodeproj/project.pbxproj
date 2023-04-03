@@ -14,6 +14,7 @@
 		C737D30E29DABCF500D0DA51 /* TaskTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D30D29DABCF500D0DA51 /* TaskTableVC.swift */; };
 		C737D31129DABEA900D0DA51 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31029DABEA900D0DA51 /* TaskCell.swift */; };
 		C737D31329DAC99000D0DA51 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31229DAC99000D0DA51 /* NavVC.swift */; };
+		C737D31629DAEFC800D0DA51 /* UITextView ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31529DAEFC800D0DA51 /* UITextView ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C737D30D29DABCF500D0DA51 /* TaskTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableVC.swift; sourceTree = "<group>"; };
 		C737D31029DABEA900D0DA51 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		C737D31229DAC99000D0DA51 /* NavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
+		C737D31529DAEFC800D0DA51 /* UITextView ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		C737D2F729DAB33100D0DA51 /* UserDefaults */ = {
 			isa = PBXGroup;
 			children = (
+				C737D31429DAEF8600D0DA51 /* Extensions */,
 				C737D30F29DABD2000D0DA51 /* Supporting */,
 				C737D30C29DABC8900D0DA51 /* AppSceneDelegates */,
 				C737D30D29DABCF500D0DA51 /* TaskTableVC.swift */,
@@ -84,6 +87,14 @@
 				C737D30129DAB33200D0DA51 /* Assets.xcassets */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		C737D31429DAEF8600D0DA51 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C737D31529DAEFC800D0DA51 /* UITextView ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C737D31629DAEFC800D0DA51 /* UITextView ext.swift in Sources */,
 				C737D31129DABEA900D0DA51 /* TaskCell.swift in Sources */,
 				C737D31329DAC99000D0DA51 /* NavVC.swift in Sources */,
 				C737D30E29DABCF500D0DA51 /* TaskTableVC.swift in Sources */,

@@ -30,6 +30,8 @@ class TaskCell: UITableViewCell {
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
         inputTextField.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
+        inputTextField.addDoneButton(title: "Done", target: self, selector: #selector(dissmisKeyboard))
+        
         NSLayoutConstraint.activate([
             inputTextField.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
             inputTextField.topAnchor.constraint(equalTo: guide.topAnchor),
@@ -48,5 +50,11 @@ class TaskCell: UITableViewCell {
         ])
     }
     
+    
+    //MARK: - @objc
+    @objc
+    private func dissmisKeyboard() {
+        inputTextField.resignFirstResponder()
+    }
 }
 
