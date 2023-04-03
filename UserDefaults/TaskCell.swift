@@ -30,7 +30,7 @@ class TaskCell: UITableViewCell {
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
         inputTextField.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
-        inputTextField.addDoneButton(title: "Done", target: self, selector: #selector(dissmisKeyboard))
+        inputTextField.addDoneButton(title: "Done", target: self, selector: #selector(dismissKeyboard))
         
         NSLayoutConstraint.activate([
             inputTextField.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
@@ -43,18 +43,27 @@ class TaskCell: UITableViewCell {
     private func configureActivitySwitch() {
         self.contentView.addSubview(activitySwitch)
         activitySwitch.translatesAutoresizingMaskIntoConstraints = false
-    
+        activitySwitch.isOn = true
+        activitySwitch.addTarget(self, action: #selector(changeTaskActivityStatus), for: .valueChanged)
+        
         NSLayoutConstraint.activate([
             activitySwitch.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
             activitySwitch.centerYAnchor.constraint(equalTo: guide.centerYAnchor)
         ])
+        
     }
     
     
     //MARK: - @objc
     @objc
-    private func dissmisKeyboard() {
+    private func dismissKeyboard() {
         inputTextField.resignFirstResponder()
+    }
+    
+    @objc
+    private func changeTaskActivityStatus() {
+        activitySwitch.isOn ? (self.contentView.alpha = 1) : (self.contentView.alpha = 0.3)
+        activitySwitch.isOn ? (inputTextField.isEditable = true) : (inputTextField.isEditable = false)
     }
 }
 
