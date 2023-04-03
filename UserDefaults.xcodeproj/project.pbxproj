@@ -16,6 +16,7 @@
 		C737D31329DAC99000D0DA51 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31229DAC99000D0DA51 /* NavVC.swift */; };
 		C737D31629DAEFC800D0DA51 /* UITextView ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31529DAEFC800D0DA51 /* UITextView ext.swift */; };
 		C737D31829DB1E6700D0DA51 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31729DB1E6700D0DA51 /* Task.swift */; };
+		C737D31A29DB31C800D0DA51 /* TaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31929DB31C800D0DA51 /* TaskVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C737D31229DAC99000D0DA51 /* NavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
 		C737D31529DAEFC800D0DA51 /* UITextView ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView ext.swift"; sourceTree = "<group>"; };
 		C737D31729DB1E6700D0DA51 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		C737D31929DB31C800D0DA51 /* TaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				C737D31029DABEA900D0DA51 /* TaskCell.swift */,
 				C737D31229DAC99000D0DA51 /* NavVC.swift */,
 				C737D31729DB1E6700D0DA51 /* Task.swift */,
+				C737D31929DB31C800D0DA51 /* TaskVC.swift */,
 			);
 			path = UserDefaults;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				C737D31629DAEFC800D0DA51 /* UITextView ext.swift in Sources */,
 				C737D31129DABEA900D0DA51 /* TaskCell.swift in Sources */,
 				C737D31329DAC99000D0DA51 /* NavVC.swift in Sources */,
+				C737D31A29DB31C800D0DA51 /* TaskVC.swift in Sources */,
 				C737D30E29DABCF500D0DA51 /* TaskTableVC.swift in Sources */,
 				C737D2F929DAB33100D0DA51 /* AppDelegate.swift in Sources */,
 				C737D31829DB1E6700D0DA51 /* Task.swift in Sources */,
