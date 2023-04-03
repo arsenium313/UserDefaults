@@ -27,8 +27,9 @@ class TaskTableVC: UITableViewController {
     //MARK: - SetupUI
     private func configureNavigationItem() {
         navigationItem.title = "Задачи - \(tasks.count)"
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTasks))
         let addTaskButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
-        navigationItem.rightBarButtonItem = addTaskButton
+        navigationItem.rightBarButtonItems = [saveButton, addTaskButton]
     }
     
     
@@ -39,6 +40,10 @@ class TaskTableVC: UITableViewController {
         tableView.reloadData()
     }
     
+    @objc
+    private func saveTasks() {
+        
+    }
     
     // MARK: - TableView DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
