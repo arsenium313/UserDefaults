@@ -48,9 +48,20 @@ class TaskTableVC: UITableViewController {
         return cell
     }
     
-    // MARK: TableView Delegate
+    // MARK: - TableView Delegate
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
 
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { action, sourceView, succes in
+            self.tasks.remove(at: indexPath.row)
+            self.tableView.reloadData()
+        }
+        
+        let swipe = UISwipeActionsConfiguration(actions: [deleteAction])
+        swipe.performsFirstActionWithFullSwipe = true
+        return swipe
+    }
+    
 }
