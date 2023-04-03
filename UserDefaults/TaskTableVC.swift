@@ -68,7 +68,7 @@ class TaskTableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { action, sourceView, succes in
-            self.tasks.remove(at: indexPath.row)
+            self.taskCounter.remove(at: indexPath.row)
             self.tableView.reloadData()
         }
         
