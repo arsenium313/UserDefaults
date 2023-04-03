@@ -10,7 +10,9 @@ import UIKit
 class TaskTableVC: UITableViewController {
 
     //MARK: Properties
-    private var tasks: [Int] = Array(repeating: 1, count: 3) {
+    private var tasks: [Task] = []
+    
+    private var taskCounter: [Int] = [] {
         willSet {
             navigationItem.title = "Задачи - \(newValue.count)"
         }
@@ -36,24 +38,26 @@ class TaskTableVC: UITableViewController {
     //MARK: - @objc
     @objc
     private func addTask() {
-        tasks.append(1)
+        let task = Task(task: "", isOn: true)
+        taskCounter.append(0)
         tableView.reloadData()
     }
     
     @objc
     private func saveTasks() {
-        
+        print("saved!")
     }
     
     // MARK: - TableView DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return taskCounter.count
     }
 
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
         cell.configureSelf()
+        cell.inputTextField.delegate = self
         return cell
     }
     
@@ -71,6 +75,21 @@ class TaskTableVC: UITableViewController {
         let swipe = UISwipeActionsConfiguration(actions: [deleteAction])
         swipe.performsFirstActionWithFullSwipe = true
         return swipe
+    }
+    
+}
+
+extension TaskTableVC: UITextViewDelegate {
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        guard !textView.text.isEmpty else { return true }
+        let trimmedText = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedText.isEmpty else { return true }
+        
+        let task = Task(task: trimmedText, isOn: true)
+        self.tasks.append(task)
+        print(tasks.count)
+        return true
     }
     
 }

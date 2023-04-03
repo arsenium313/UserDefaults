@@ -12,7 +12,7 @@ class TaskCell: UITableViewCell {
     //MARK: Properies
     static let identifier = "TaskCell"
     
-    private let inputTextField = UITextView()
+    let inputTextField = UITextView()
     private let activitySwitch = UISwitch()
     private let keyboardDissmisTapRecognizer = UITapGestureRecognizer()
     
