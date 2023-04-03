@@ -10,7 +10,11 @@ import UIKit
 class TaskTableVC: UITableViewController {
 
     //MARK: Properties
-    private var tasks: [Int] = Array(repeating: 1, count: 3)
+    private var tasks: [Int] = Array(repeating: 1, count: 3) {
+        willSet {
+            navigationItem.title = "Задачи - \(newValue.count)"
+        }
+    }
     
     //MARK: - View Life Circle
     override func viewDidLoad() {
@@ -22,7 +26,7 @@ class TaskTableVC: UITableViewController {
     
     //MARK: - SetupUI
     private func configureNavigationItem() {
-        navigationItem.title = "Задачи - \"count\""
+        navigationItem.title = "Задачи - \(tasks.count)"
         let addTaskButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
         navigationItem.rightBarButtonItem = addTaskButton
     }

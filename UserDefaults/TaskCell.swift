@@ -29,7 +29,7 @@ class TaskCell: UITableViewCell {
         self.contentView.addSubview(inputTextField)
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
         inputTextField.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        
+        inputTextField.font = UIFont.systemFont(ofSize: 20)
         inputTextField.addDoneButton(title: "Done", target: self, selector: #selector(dismissKeyboard))
         
         NSLayoutConstraint.activate([
