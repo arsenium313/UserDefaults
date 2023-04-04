@@ -82,11 +82,8 @@ class TaskVC: UIViewController {
         self.tableView.isEditing ? self.tableView.setEditing(false, animated: true) : self.tableView.setEditing(true, animated: true)
         let cell =  tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TaskCell
         
-        self.tableView.isEditing ? (cell.inputTextField.isSelectable = true) : (cell.inputTextField.isSelectable = false)
-        self.tableView.isEditing ? (cell.inputTextField.isEditable = true) : (cell.inputTextField.isEditable = false)
-        print(cell.inputTextField.isSelectable)
-        print(cell.inputTextField.isEditable)
-        print("  ")
+        self.tableView.isEditing ? (cell.inputTextView.isSelectable = true) : (cell.inputTextView.isSelectable = false)
+        self.tableView.isEditing ? (cell.inputTextView.isEditable = true) : (cell.inputTextView.isEditable = false)
     }
     
 }
@@ -98,9 +95,15 @@ extension TaskVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let task = tasks[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier, for: indexPath) as! TaskCell
         cell.configureSelf()
-        cell.inputTextField.text = tasks[indexPath.row].task
+        cell.inputTextView.delegate = self
+        cell.indexTag = indexPath.row
+        cell.inputText = task.task
+        cell.switchIsOn = task.isOn
+        cell.switchDelegate = self
         return cell
     }
 
@@ -126,5 +129,25 @@ extension TaskVC: UITextFieldDelegate {
         textField.resignFirstResponder()
         tableView.reloadData()
         return true
+    }
+}
+
+//MARK: - Cell TextView Delegate
+extension TaskVC: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        let task = tasks[textView.tag]
+        task.task = textView.text
+    }
+}
+
+
+//MARK: - Switch delegate
+extension TaskVC: SwitchDelegate {
+    func switchValueChange(_ uiSwitch: UISwitch) {
+        if !uiSwitch.isOn {
+            tasks[uiSwitch.tag].isOn = false
+        } else {
+            tasks[uiSwitch.tag].isOn = true
+        }
     }
 }
