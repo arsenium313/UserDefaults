@@ -16,6 +16,7 @@
 		C737D31829DB1E6700D0DA51 /* TaskClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31729DB1E6700D0DA51 /* TaskClass.swift */; };
 		C737D31A29DB31C800D0DA51 /* TaskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737D31929DB31C800D0DA51 /* TaskVC.swift */; };
 		C7738AFC29DC2C370048C771 /* SwitchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7738AFB29DC2C370048C771 /* SwitchDelegate.swift */; };
+		C7738AFE29DC802D0048C771 /* UITextField ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7738AFD29DC802D0048C771 /* UITextField ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C737D31729DB1E6700D0DA51 /* TaskClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskClass.swift; sourceTree = "<group>"; };
 		C737D31929DB31C800D0DA51 /* TaskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskVC.swift; sourceTree = "<group>"; };
 		C7738AFB29DC2C370048C771 /* SwitchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDelegate.swift; sourceTree = "<group>"; };
+		C7738AFD29DC802D0048C771 /* UITextField ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				C737D31529DAEFC800D0DA51 /* UITextView ext.swift */,
+				C7738AFD29DC802D0048C771 /* UITextField ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7738AFE29DC802D0048C771 /* UITextField ext.swift in Sources */,
 				C737D31629DAEFC800D0DA51 /* UITextView ext.swift in Sources */,
 				C737D31129DABEA900D0DA51 /* TaskCell.swift in Sources */,
 				C737D31A29DB31C800D0DA51 /* TaskVC.swift in Sources */,

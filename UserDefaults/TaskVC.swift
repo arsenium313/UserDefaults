@@ -49,6 +49,8 @@ class TaskVC: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 30)
         textField.delegate = self
         textField.placeholder = "Введите задачу..."
+        textField.clearButtonMode = .whileEditing
+        textField.setLeftPaddingPoints(10)
         
         textField.layer.cornerRadius = 12
         textField.textAlignment = .left
