@@ -13,7 +13,14 @@ class TaskVC: UIViewController {
     private let tableView = UITableView()
     private let textField = UITextField()
     
-    private var tasks: [Task] = Task.loadTask()
+    private var activeTaskCounter: Int = 0
+    
+    private var tasks: [Task] = Task.loadTask() {
+        didSet {
+            saveTasks()
+            activeTaskCount()
+        }
+    }
     
     //MARK: - View Life Circle
     override func viewDidLoad() {
@@ -30,10 +37,9 @@ class TaskVC: UIViewController {
     }
     
     private func configureNavigationBar() {
-        self.navigationItem.title = "Задачи"
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTasks))
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTable))
-        self.navigationItem.rightBarButtonItems = [saveButton, editButton]
+        self.navigationItem.rightBarButtonItem = editButton
+        activeTaskCount()
     }
     
     private func configureTextField() {
@@ -71,6 +77,17 @@ class TaskVC: UIViewController {
         ])
     }
     
+    private func activeTaskCount() {
+        var b = 0
+        for i in tasks {
+            if i.isOn {
+                b += 1
+            }
+            
+        }
+        navigationItem.title = "Активных задач - \(b)"
+    }
+    
     //MARK: - @objc
     @objc
     private func saveTasks() {
@@ -80,13 +97,15 @@ class TaskVC: UIViewController {
     @objc
     private func editTable() {
         self.tableView.isEditing ? self.tableView.setEditing(false, animated: true) : self.tableView.setEditing(true, animated: true)
-        let cell =  tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TaskCell
-        
-        self.tableView.isEditing ? (cell.inputTextView.isSelectable = true) : (cell.inputTextView.isSelectable = false)
-        self.tableView.isEditing ? (cell.inputTextView.isEditable = true) : (cell.inputTextView.isEditable = false)
+        for (i, _) in tasks.enumerated() {
+            let cell =  tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! TaskCell
+            self.tableView.isEditing ? (cell.inputTextView.isSelectable = true) : (cell.inputTextView.isSelectable = false)
+            self.tableView.isEditing ? (cell.inputTextView.isEditable = true) : (cell.inputTextView.isEditable = false)
+        }
     }
     
 }
+
 
 //MARK: - TableView DataSource / Delegate
 extension TaskVC: UITableViewDataSource, UITableViewDelegate {
@@ -132,11 +151,13 @@ extension TaskVC: UITextFieldDelegate {
     }
 }
 
+
 //MARK: - Cell TextView Delegate
 extension TaskVC: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         let task = tasks[textView.tag]
         task.task = textView.text
+        saveTasks()
     }
 }
 
@@ -144,10 +165,8 @@ extension TaskVC: UITextViewDelegate {
 //MARK: - Switch delegate
 extension TaskVC: SwitchDelegate {
     func switchValueChange(_ uiSwitch: UISwitch) {
-        if !uiSwitch.isOn {
-            tasks[uiSwitch.tag].isOn = false
-        } else {
-            tasks[uiSwitch.tag].isOn = true
-        }
+        uiSwitch.isOn ? (tasks[uiSwitch.tag].isOn = true) : (tasks[uiSwitch.tag].isOn = false)
+        saveTasks()
+        activeTaskCount()
     }
 }

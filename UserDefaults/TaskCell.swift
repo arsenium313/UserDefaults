@@ -20,7 +20,10 @@ class TaskCell: UITableViewCell {
     }
     
     var switchIsOn: Bool = true {
-        willSet { activitySwitch.isOn = newValue }
+        willSet {
+            activitySwitch.isOn = newValue
+            changeCellAlpha()
+        }
     }
     
     var indexTag: Int = 0 {
@@ -72,6 +75,9 @@ class TaskCell: UITableViewCell {
         
     }
     
+    private func changeCellAlpha() {
+        activitySwitch.isOn ? (self.contentView.alpha = 1) : (self.contentView.alpha = 0.3)
+    }
     
     //MARK: - @objc
     @objc
@@ -81,8 +87,9 @@ class TaskCell: UITableViewCell {
     
     @objc
     private func changeTaskActivityStatus() {
-        activitySwitch.isOn ? (self.contentView.alpha = 1) : (self.contentView.alpha = 0.3)
+        changeCellAlpha()
         switchDelegate.switchValueChange(activitySwitch)
     }
+    
 }
 
