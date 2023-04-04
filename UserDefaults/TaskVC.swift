@@ -29,15 +29,11 @@ class TaskVC: UIViewController {
         configureNavigationBar()
     }
     
-    private func loadData() {
-        tasks = Task.loadTask()
-    }
-    
-    
     private func configureNavigationBar() {
         self.navigationItem.title = "Задачи"
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTasks))
-        self.navigationItem.rightBarButtonItem = saveButton
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTable))
+        self.navigationItem.rightBarButtonItems = [saveButton, editButton]
     }
     
     private func configureTextField() {
@@ -76,6 +72,11 @@ class TaskVC: UIViewController {
         Task.save(tasks)
     }
     
+    @objc
+    private func editTable() {
+        self.tableView.isEditing ? self.tableView.setEditing(false, animated: true) : self.tableView.setEditing(true, animated: true)
+    }
+    
 }
 
 //MARK: - TableView DataSource / Delegate
@@ -94,18 +95,13 @@ extension TaskVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { action, sourceView, succes in
-            self.tasks.remove(at: indexPath.row)
-            self.tableView.reloadData()
-            self.saveTasks()
-        }
-        
-        let swipe = UISwipeActionsConfiguration(actions: [deleteAction])
-        swipe.performsFirstActionWithFullSwipe = true
-        return swipe
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        tasks.remove(at: indexPath.row)
+        tableView.reloadData()
+        saveTasks()
     }
+    
 }
 
 

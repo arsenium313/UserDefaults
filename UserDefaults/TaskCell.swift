@@ -14,7 +14,6 @@ class TaskCell: UITableViewCell {
     
     let inputTextField = UITextView()
     private let activitySwitch = UISwitch()
-    private let keyboardDissmisTapRecognizer = UITapGestureRecognizer()
     
     private lazy var guide = self.contentView.layoutMarginsGuide
     
