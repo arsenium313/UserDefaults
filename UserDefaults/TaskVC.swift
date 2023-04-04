@@ -13,7 +13,7 @@ class TaskVC: UIViewController {
     private let tableView = UITableView()
     private let textField = UITextField()
     
-    private var tasks: [Task] = []
+    private var tasks: [Task] = Task.loadTask()
     
     //MARK: - View Life Circle
     override func viewDidLoad() {
@@ -28,6 +28,11 @@ class TaskVC: UIViewController {
         configureTableView()
         configureNavigationBar()
     }
+    
+    private func loadData() {
+        tasks = Task.loadTask()
+    }
+    
     
     private func configureNavigationBar() {
         self.navigationItem.title = "Задачи"
@@ -68,7 +73,7 @@ class TaskVC: UIViewController {
     //MARK: - @objc
     @objc
     private func saveTasks() {
-        print("Saved!")
+        Task.save(tasks)
     }
     
 }
@@ -88,6 +93,18 @@ extension TaskVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { action, sourceView, succes in
+            self.tasks.remove(at: indexPath.row)
+            self.tableView.reloadData()
+            self.saveTasks()
+        }
+        
+        let swipe = UISwipeActionsConfiguration(actions: [deleteAction])
+        swipe.performsFirstActionWithFullSwipe = true
+        return swipe
     }
 }
 
