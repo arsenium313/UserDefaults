@@ -42,11 +42,16 @@ class TaskVC: UIViewController {
         textField.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         textField.font = UIFont.systemFont(ofSize: 30)
         textField.delegate = self
+        textField.placeholder = "Введите задачу..."
         
+        textField.layer.cornerRadius = 12
+        textField.textAlignment = .left
+        
+        let guide = self.view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor),
-            textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            textField.topAnchor.constraint(equalTo: guide.topAnchor),
+            textField.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            textField.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
             textField.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
@@ -75,6 +80,13 @@ class TaskVC: UIViewController {
     @objc
     private func editTable() {
         self.tableView.isEditing ? self.tableView.setEditing(false, animated: true) : self.tableView.setEditing(true, animated: true)
+        let cell =  tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! TaskCell
+        
+        self.tableView.isEditing ? (cell.inputTextField.isSelectable = true) : (cell.inputTextField.isSelectable = false)
+        self.tableView.isEditing ? (cell.inputTextField.isEditable = true) : (cell.inputTextField.isEditable = false)
+        print(cell.inputTextField.isSelectable)
+        print(cell.inputTextField.isEditable)
+        print("  ")
     }
     
 }

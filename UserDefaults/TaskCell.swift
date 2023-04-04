@@ -30,6 +30,7 @@ class TaskCell: UITableViewCell {
         inputTextField.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         inputTextField.font = UIFont.systemFont(ofSize: 20)
         inputTextField.addDoneButton(title: "Done", target: self, selector: #selector(dismissKeyboard))
+        inputTextField.isSelectable = false
         
         NSLayoutConstraint.activate([
             inputTextField.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
@@ -62,7 +63,7 @@ class TaskCell: UITableViewCell {
     @objc
     private func changeTaskActivityStatus() {
         activitySwitch.isOn ? (self.contentView.alpha = 1) : (self.contentView.alpha = 0.3)
-        activitySwitch.isOn ? (inputTextField.isEditable = true) : (inputTextField.isEditable = false)
+        //activitySwitch.isOn ? (inputTextField.isEditable = true) : (inputTextField.isEditable = false)
     }
 }
 
